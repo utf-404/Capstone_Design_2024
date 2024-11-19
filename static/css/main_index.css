@@ -1,0 +1,276 @@
+html, body
+{
+	height: 100%;
+}
+body {
+    margin: 0px;
+	padding: 0px;
+	background: #333333;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12pt;
+	font-weight: 400;
+	color: #000000;
+}
+
+/* Header Section */
+#header-wrapper {
+    background-color: #8DCB89;
+    text-align: center;
+}
+
+header a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+header a:hover {
+    color: #ddd !important;
+}
+
+header p {
+    font-size: 24px;
+    margin: 0;
+}
+#logo
+{
+	padding: 5em 0em;
+	text-align: center;
+}
+	
+#logo h1
+{
+	font-size: 3.5em;
+}
+	
+#logo a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+	
+#logo span
+{
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 1.50em;
+	color: rgb(255, 255, 255);
+}
+
+.header-nav {
+    overflow: hidden;
+	padding: 5em 0em;
+	background: #8DCB89;
+}
+
+.header-nav button {
+    display: inline-block;
+    margin-left: 0.50em;
+    padding: 1em 1.5em;
+    letter-spacing: 0.20em;
+	text-decoration: none;
+	font-size: 1.30em;
+	font-weight: 600;
+    text-transform: uppercase;
+	outline: 0;
+    background-color: #8DCB89;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-nav button:hover {
+    background-color: #45a049;
+}
+
+/* Content Section */
+#welcome
+	{
+		overflow: hidden;
+		padding: 8em 0em;
+		text-align: center;
+		color: rgba(255,255,255,0.3);
+	}
+	
+	#welcome .content
+	{
+		padding: 0em 8em;
+	}
+	
+	
+	
+	#welcome a,
+	#welcome strong
+	{
+		color: rgba(255,255,255,0.6);
+	}
+    #wrapper1
+	{
+		background: #242424;
+	}
+    .title
+	{
+		margin-bottom: 3em;
+	}
+	
+	.title h2
+	{
+		font-size: 2.8em;
+		color: rgba(255,255,255,0.9);
+	}
+	
+	.title .byline
+	{
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 1.1em;
+		color: #6F6F6F;
+	}   
+    .content p
+    {
+        letter-spacing: 0.15em;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 1.1em;
+		color: #6F6F6F; 
+    }
+.image-small {
+    width: 950px;
+    height: auto;
+}
+
+.user-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.a-button
+	{
+		display: inline-block;
+		margin-top: 2em;
+		padding: 1em 2em 1em 2em;
+		background: #8DCB89;
+		border-radius: 8px;
+		letter-spacing: 0.20em;
+		line-height: 1.8em;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 1.2em;
+		color: #FFF;
+	}
+.sign-up-button, .action-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #6FC06A;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sign-up-button:hover, .action-button:hover {
+    background-color: #45a049;
+}
+
+.scrollable-content {
+    height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+
+/* 반응형 스타일 - 중간 화면용 */
+@media (max-width: 768px) {
+    header p {
+        font-size: 20px;
+    }
+
+    .header-nav {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .header-nav button {
+        margin: 5px 0;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content-container {
+        width: 90%;
+    }
+
+    .sign-up-button, .action-button {
+        width: 90%;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .user-container p {
+        font-size: 14px;
+    }
+}
+
+/* 반응형 스타일 - 모바일용 */
+@media (max-width: 480px) {
+    header p {
+        font-size: 18px;
+    }
+
+    .content-wrapper {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .content-container {
+        width: 100%;
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .sign-up-button, .action-button {
+        width: 100%;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .user-container p {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 15px 0;
+    }
+
+    .footer-content p {
+        font-size: 12px;
+    }
+}

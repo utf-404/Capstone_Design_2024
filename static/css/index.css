@@ -1,0 +1,99 @@
+/* 전체 스타일 설정 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* 컨테이너 스타일 */
+.content-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sign-up-button, .action-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sign-up-button:hover, .action-button:hover {
+    background-color: #0056b3;
+}
+
+/* 반응형 스타일 - 중간 화면용 */
+@media (max-width: 768px) {
+    .content-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .sign-up-button, .action-button {
+        width: 90%;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .user-container p {
+        font-size: 14px;
+    }
+}
+
+/* 반응형 스타일 - 모바일용 */
+@media (max-width: 480px) {
+    .content-container {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    .sign-up-button, .action-button {
+        width: 100%;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .user-container p {
+        font-size: 12px;
+    }
+
+    /* 타이틀 폰트 크기 조정 */
+    h1 {
+        font-size: 22px;
+    }
+
+    /* 일반 텍스트 폰트 크기 조정 */
+    p {
+        font-size: 14px;
+    }
+}
+
+/* 추가적인 UI 개선 */
+.title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+}

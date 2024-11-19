@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live CCTV Feed with YOLO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .video-box {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            border: 2px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Alert overlay style */
+        #alertOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: yellow;
+            font-size: 2em;
+            text-align: center;
+            padding-top: 20%;
+            z-index: 1000;
+        }
+
+        /* Icon and message container */
+        #alertContent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #alertIcon {
+            width: 100px; /* 아이콘 크기 */
+            height: 100px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live CCTV Feed with YOLO</h1>
+
+    <!-- Alert overlay -->
+    <div id="alertOverlay">
+        <div id="alertContent">
+            <img id="alertIcon" src="{{ url_for('static', filename='images/warning-icon.png') }}" alt="Warning Icon">
+            <div>낙상 감지가 되었습니다</div>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <!-- CCTV1 Original Feed -->
+        <div class="video-box">
+            <div>
+                <h2>CCTV 1 Original Feed</h2>
+                <img src="{{ url_for('video_feed1') }}" alt="CCTV 1 Original Feed">
+            </div>
+        </div>
+        <!-- CCTV1 YOLO Processed Feed -->
+        <div class="video-box">
+            <div>
+                <h2>CCTV 1 YOLO Processed Feed</h2>
+                <img src="{{ url_for('yolo_feed1') }}" alt="CCTV 1 YOLO Processed Feed">
+            </div>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <!-- CCTV2 Original Feed -->
+        <div class="video-box">
+            <div>
+                <h2>CCTV 2 Original Feed</h2>
+                <img src="{{ url_for('video_feed2') }}" alt="CCTV 2 Original Feed">
+            </div>
+        </div>
+        <!-- CCTV2 YOLO Processed Feed -->
+        <div class="video-box">
+            <div>
+                <h2>CCTV 2 YOLO Processed Feed</h2>
+                <img src="{{ url_for('yolo_feed2') }}" alt="CCTV 2 YOLO Processed Feed">
+            </div>
+        </div>
+    </div>
+
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+
+    <!-- Socket.IO 라이브러리 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+        // Socket.IO 연결 설정
+        const socket = io();
+
+        // fall_alert 이벤트 수신 시 알림 표시
+        socket.on('fall_alert', function(data) {
+            const alertOverlay = document.getElementById('alertOverlay');
+            alertOverlay.style.display = 'block';
+
+            // 알림을 10초 동안 표시한 후 숨기기
+            setTimeout(() => {
+                alertOverlay.style.display = 'none';
+            }, 10000); // 알림을 10초 동안 표시
+        });
+    </script>
+</body>
+</html>

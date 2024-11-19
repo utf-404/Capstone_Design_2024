@@ -1,0 +1,176 @@
+.container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  padding: 100px;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  margin: 20px auto;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.form-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 25px;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-align: center;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.container button {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 50px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+body{
+  margin: 0px;
+	padding: 0px;
+}
+#header-wrapper {
+  background-color: #8DCB89;
+  text-align: center;
+}
+
+.header-nav {
+  overflow: hidden;
+  padding: 5em 0em;
+  background: #8DCB89;
+}
+
+.header-nav button {
+  display: inline-block;
+  margin-left: 0.50em;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.30em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #8DCB89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#logo {
+  padding: 5em 0em;
+  text-align: center;
+}
+
+#logo h1 {
+  font-size: 3.5em;
+}
+
+#logo a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+#logo span {
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 1.50em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header-nav button:hover {
+  background-color: #45a049;
+}
+
+/* 반응형 스타일 - 중간 화면용 */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 30px;
+  }
+
+  input, select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* 반응형 스타일 - 모바일용 */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  input, select {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 12px;
+  }
+}

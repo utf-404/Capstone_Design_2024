@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title></title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/write_notice.css') }}">
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="logo">
+                <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+            </a>
+        </div>
+        <div class="header-nav">
+           
+            <div class="user-container"> 
+                
+                
+                    
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                    
+                        <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+            </div>
+       
+        </div>
+    </div>
+
+    {% block contents %}
+    <div class="container">
+        <h2>공지사항 작성</h2>
+        <form action="{{ url_for('write_notice') }}" method="POST">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" required>
+            </div>
+            
+            <div class="form-group mt-3">
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" name="content" rows="5" placeholder="공지사항 내용을 입력하세요" required></textarea>
+            </div>
+            
+            <div class="form-group mt-3">
+                <label for="date">날짜</label>
+                <input type="text" class="form-control" id="date" name="date" value="{{ current_date }}" readonly>
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-4">작성 완료</button>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

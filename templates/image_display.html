@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Detection Media Display</title>
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Firebase SDK 모듈 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+        // Firebase 프로젝트 설정
+        const firebaseConfig = {
+            apiKey: "",
+            authDomain: "",
+            databaseURL: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: "",
+            appId: "",
+            measurementId: ""
+        };
+
+        // Firebase 초기화
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        // Firebase Storage에서 모든 미디어 파일 가져오기
+        const listRef = ref(storage); // 최상위 경로의 모든 파일을 가져옵니다.
+
+        listAll(listRef).then((res) => {
+            res.items.forEach((itemRef) => {
+                // 각 파일의 다운로드 URL 가져오기
+                getDownloadURL(itemRef).then((url) => {
+                    const fileName = itemRef.name.toLowerCase();
+                    const mediaContainer = document.getElementById('mediaContainer');
+
+                    // 이미지와 비디오 구분
+                    if (fileName.endsWith('.png') || fileName.endsWith('.jpg')) {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = url;
+                        imgElement.width = 300; // 원하는 이미지 크기 설정
+                        mediaContainer.appendChild(imgElement);
+                    } else if (fileName.endsWith('.mp4')) {
+                        const videoElement = document.createElement('video');
+                        videoElement.src = url;
+                        videoElement.width = 300; // 원하는 비디오 크기 설정
+                        videoElement.controls = true; // 비디오 컨트롤러 표시
+                        mediaContainer.appendChild(videoElement);
+                    }
+                }).catch((error) => {
+                    console.error("Error getting media URL: ", error);
+                });
+            });
+        }).catch((error) => {
+            console.error("Error listing media files: ", error);
+        });
+    </script>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block contents %}
+    <h1>Fall Detection Media Display</h1>
+    <div id="mediaContainer"></div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>문의사항 목록</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inquiry_list.css') }}">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyBAnvwSJFRsyP_8Mr_qfvFnTDjPMBhS9nw",
+          authDomain: "appproject-739aa.firebaseapp.com",
+          databaseURL: "https://appproject-739aa-default-rtdb.firebaseio.com",
+          projectId: "appproject-739aa",
+          storageBucket: "appproject-739aa.appspot.com",
+          messagingSenderId: "618115661733",
+          appId: "1:618115661733:web:96b335f2355542a1f1724c",
+          measurementId: "G-Q398T352F9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="logo">
+            <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+        </div>
+        <div class="header-nav">
+            <div class="user-container"> 
+                <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper3">
+        {% block contents %}
+            <h1>문의사항 목록</h1>
+
+            {% if length == 0 %}
+                <p>작성된 문의사항이 없습니다.</p>
+            {% else %}
+                <div class="scrollable-content">
+                    <ul>
+                    {% for inquiry_id, inquiry in inquiry_list.items() %}
+                        <li>
+                            <div style="flex-grow: 1;">
+                                <a href="{{ url_for('inquiry_detail', inquiry_id=inquiry_id) }}">
+                                    <strong>문의 제목: {{ inquiry.title }}</strong><br>
+                                    <small>작성자: {{ inquiry.name }} | 역할: {{ inquiry.role }} | SeniorID: {{ inquiry.seniorID }}</small>
+                                </a>
+                            </div>
+                            <!-- 관리자만 삭제 버튼 표시 -->
+                            <form action="{{ url_for('delete_inquiry', inquiry_id=inquiry_id) }}" method="POST" style="margin-left: 15px;">
+                                <button type="submit" class="delete_button" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endblock contents %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹을 위한 뷰포트 설정 -->
+    <title>시니어 목록</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_senior.css') }}">
+ 
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "",
+          authDomain: "",
+          databaseURL: "",
+          projectId: "",
+          storageBucket: "",
+          messagingSenderId: "",
+          appId: "",
+          measurementId: ""
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // 사용자 인증 상태 확인
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                const userRef = ref(database, 'users/' + uid);
+
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        const role = userData.role;
+
+                        if (role === 'Admin') {
+                            // 관리자일 경우 시니어 데이터 가져오기
+                            loadSeniorData();
+                        } else {
+                            alert('관리자만 접근 가능합니다.');
+                            signOut(auth);  // 보호자 로그아웃
+                            window.location.href = '/login';  // 로그인 페이지로 리디렉션
+                        }
+                    } else {
+                        alert('사용자 정보를 찾을 수 없습니다.');
+                    }
+                }).catch((error) => {
+                    console.error('사용자 데이터를 가져오는 중 오류 발생:', error);
+                    alert('사용자 데이터를 가져오는 중 오류가 발생했습니다.');
+                });
+            } else {
+                alert('로그인이 필요합니다.');
+                window.location.href = '/login';  // 로그인 페이지로 리디렉션
+            }
+        });
+
+        // 시니어 데이터 가져오기
+        function loadSeniorData() {
+            const seniorsRef = ref(database, 'seniors/');
+            get(seniorsRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const seniorsData = snapshot.val();
+                    displaySeniors(seniorsData);  // 시니어 데이터를 화면에 표시
+                } else {
+                    console.log("No seniors data found.");
+                }
+            }).catch((error) => {
+                console.error("Error fetching seniors:", error);
+            });
+        }
+
+        // 시니어 데이터를 HTML 테이블에 표시 (Room ID로 정렬)
+function displaySeniors(seniors) {
+    const tableBody = document.querySelector("#seniorsTableBody");
+    tableBody.innerHTML = '';  // 이전 데이터 초기화
+
+    // Object.entries로 데이터를 배열로 변환한 후, Room ID 순으로 정렬
+    const sortedSeniors = Object.entries(seniors).sort(([, a], [, b]) => {
+        return a.roomID.localeCompare(b.roomID);  // Room ID를 기준으로 문자열 정렬
+    });
+
+    // 정렬된 시니어 데이터를 테이블에 표시
+    sortedSeniors.forEach(([seniorID, details]) => {
+        const row = document.createElement("tr");
+
+         // Room ID 셀
+        const roomCell = document.createElement("td");
+        roomCell.textContent = details.roomID;
+        row.appendChild(roomCell);
+
+        // Senior ID 셀
+        const idCell = document.createElement("td");
+        idCell.textContent = seniorID;
+        row.appendChild(idCell);
+
+        // Name 셀
+        const nameCell = document.createElement("td");
+        nameCell.textContent = details.name;
+        row.appendChild(nameCell);
+
+        // Details 셀
+        const linkCell = document.createElement("td");
+        const detailLink = document.createElement("a");
+        detailLink.href = `/senior_details/${seniorID}`;  // 세부 정보 페이지로 연결
+        detailLink.textContent = "상세정보 보기";
+        linkCell.appendChild(detailLink);
+        row.appendChild(linkCell);
+
+        tableBody.appendChild(row);
+    });
+}
+    </script>
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="logo">
+                <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+            </a>
+        </div>
+        <div class="header-nav">
+           
+            <div class="user-container"> 
+                
+                
+                    
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                    
+                        <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+            </div>
+       
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>등록된 시니어 정보</h1>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>호실</th>
+                    <th>시니어 ID</th>
+                    <th>이름</th>
+                    <th>상세정보</th>
+                </tr>
+            </thead>
+            <tbody id="seniorsTableBody">
+                <!-- 시니어 데이터를 동적으로 추가 -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹을 위한 뷰포트 설정 -->
+    <title>Add Senior</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_senior.css') }}">
+
+    <script type="module">
+        // Import Firebase SDK functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+        // Firebase 설정 정보
+        const firebaseConfig = {
+          apiKey: "AIzaSyBAnvwSJFRsyP_8Mr_qfvFnTDjPMBhS9nw",
+          authDomain: "appproject-739aa.firebaseapp.com",
+          databaseURL: "https://appproject-739aa-default-rtdb.firebaseio.com",
+          projectId: "appproject-739aa",
+          storageBucket: "appproject-739aa.appspot.com",
+          messagingSenderId: "618115661733",
+          appId: "1:618115661733:web:96b335f2355542a1f1724c",
+          measurementId: "G-Q398T352F9"
+        };
+
+        // Firebase 초기화
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // 사용자가 로그인한 상태인지 확인
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                const userRef = ref(database, 'users/' + uid);
+
+                // Use get() to fetch user data
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        console.log(userData);
+                    } else {
+                        console.log("No data available");
+                    }
+                }).catch((error) => {
+                    console.error('Error fetching user data:', error);
+                });
+            } else {
+                console.error('User is not authenticated');
+                window.location.href = '/login';
+            }
+        });
+
+        // 시니어 추가 처리
+        document.getElementById('add-senior-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // 기본 폼 제출 동작 방지
+
+            const seniorID = document.getElementById('seniorID').value;
+            const name = document.getElementById('name').value;
+            const birthDate = document.getElementById('birthDate').value;
+            const gender = document.getElementById('gender').value;
+            const admissionDate = document.getElementById('admissionDate').value;
+            const existingConditions = document.getElementById('existingConditions').value;
+            const careFacilityID = document.getElementById('careFacilityID').value;
+            const caregiverID = document.getElementById('caregiverID').value;
+            const roomID = document.getElementById('roomID').value;
+
+            // 시니어 데이터를 Firebase Realtime Database에 추가
+            const seniorRef = ref(database, 'seniors/' + seniorID);
+            set(seniorRef, {
+                seniorID: seniorID,
+                name: name,
+                birthDate: birthDate,
+                gender: gender,
+                admissionDate: admissionDate,
+                existingConditions: existingConditions,
+                careFacilityID: careFacilityID,
+                caregiverID: caregiverID,
+                roomID: roomID
+            })
+            .then(() => {
+                alert('시니어 정보가 성공적으로 추가되었습니다.');
+                document.getElementById('add-senior-form').reset();  // 폼 초기화
+                window.location.href = '/';  // 시니어 추가 후 index.html로 리디렉션
+            })
+            .catch((error) => {
+                console.error('시니어 정보 추가 중 오류 발생:', error);
+                alert('시니어 정보 추가 중 오류가 발생했습니다.');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="logo">
+                <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+            </a>
+        </div>
+        <div class="header-nav">
+           
+            <div class="user-container"> 
+                
+                
+                    
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                    
+                        <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+            </div>
+       
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1>시니어 추가</h1>
+        <form id="add-senior-form">
+            <label for="seniorID">시니어 ID:</label>
+            <input type="text" id="seniorID" name="seniorID" required>
+
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="birthDate">생년월일:</label>
+            <input type="date" id="birthDate" name="birthDate" required>
+
+            <label for="gender">성별:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">남성</option>
+                <option value="Female">여성</option>
+            </select>
+
+            <label for="admissionDate">등록 날짜:</label>
+            <input type="date" id="admissionDate" name="admissionDate" required>
+
+            <label for="existingConditions">특이사항:</label>
+            <input type="text" id="existingConditions" name="existingConditions" required>
+
+            <label for="careFacilityID">요양시설 ID:</label>
+            <input type="text" id="careFacilityID" name="careFacilityID" required>
+
+            <label for="caregiverID">보호자 ID:</label>
+            <input type="text" id="caregiverID" name="caregiverID" required>
+
+            <label for="roomID">호실:</label>
+            <input type="text" id="roomID" name="roomID" required>
+
+            <button type="submit">시니어 추가</button>
+        </form>
+    </div>
+</body>
+</html>

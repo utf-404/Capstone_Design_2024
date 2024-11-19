@@ -1,0 +1,173 @@
+/* 전체 스타일 */
+
+
+.container {
+  
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 20px auto;
+}
+
+/* 헤더 섹션 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 40px;
+  color: #333;
+  margin: 0;
+}
+
+
+
+.home-button:hover {
+  background-color: #218838;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+th, td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+}
+
+td {
+  font-size: 16px;
+  color: #555;
+}
+
+a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+body{
+  margin: 0px;
+	padding: 0px;
+}
+#header-wrapper {
+  background-color: #8DCB89;
+  text-align: center;
+}
+.header-nav {
+  overflow: hidden;
+padding: 5em 0em;
+background: #8DCB89;
+}
+.header-nav button {
+  display: inline-block;
+  margin-left: 0.50em;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.30em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #8DCB89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#logo
+{
+	padding: 5em 0em;
+	text-align: center;
+}
+	
+#logo h1
+{
+	font-size: 3.5em;
+}
+	
+#logo a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+	
+#logo span
+{
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 1.50em;
+	color: rgba(255,255,255,0.5);
+}
+.header-nav button:hover {
+  background-color: #45a049;
+}
+
+/* 반응형 스타일 - 중간 화면용 */
+@media (max-width: 768px) {
+  .container {
+      padding: 30px;
+  }
+
+  th, td {
+      padding: 12px;
+      font-size: 14px;
+  }
+
+  button {
+      padding: 10px 20px;
+      font-size: 14px;
+  }
+
+  /* 타이틀과 버튼이 수직으로 배치되도록 변경 */
+  .header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .home-button {
+      margin-top: 10px;
+      align-self: flex-end;
+  }
+}
+
+/* 반응형 스타일 - 모바일용 */
+@media (max-width: 480px) {
+  h1 {
+      font-size: 24px;
+  }
+
+  .container {
+      padding: 20px;
+  }
+
+  th, td {
+      padding: 10px;
+      font-size: 12px;
+  }
+
+  .home-button {
+      padding: 8px 16px;
+      font-size: 12px;
+  }
+}

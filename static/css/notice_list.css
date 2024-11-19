@@ -1,0 +1,180 @@
+
+/* 공지사항 리스트 항목 스타일 */
+ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+li {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-left: 4px solid #4CAF50;
+  border-radius: 8px;
+}
+li:hover {
+  background-color: #e9ecef;
+}
+#container_1 {
+  
+  background-color: white;
+  padding: 100px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 20px auto;
+} 
+
+strong {
+  font-size: 20px;
+  color: #333;
+  display: block;
+  margin-bottom: 8px; /* 제목과 날짜 사이의 간격 */
+}
+
+small {
+  font-size: 14px;
+  color: #888;
+}
+
+/* 링크 스타일 - 방문 여부에 관계없이 동일한 색상 유지 */
+a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:visited {
+  color: #333;  /* 방문한 링크도 일반 링크와 동일한 색상 */
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #45a049; /* 마우스 오버 시 색상 변경 */
+}
+body{
+  margin: 0px;
+	padding: 0px;
+}
+
+#header-wrapper {
+  background-color: #8DCB89;
+  text-align: center;
+}
+.header-nav {
+  overflow: hidden;
+padding: 5em 0em;
+background: #8DCB89;
+}
+.header-nav button {
+  display: inline-block;
+  margin-left: 0.50em;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.30em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #8DCB89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#logo
+{
+	padding: 5em 0em;
+	text-align: center;
+}
+	
+#logo h1
+{
+	font-size: 3.5em;
+}
+	
+#logo a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+h1{
+  font-size: 40px;
+}
+	
+#logo span
+{
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 1.50em;
+	color: rgba(255,255,255,0.5);
+}
+.header-nav button:hover {
+  background-color: #45a049;
+}
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  li {
+    padding: 12px;
+  }
+
+  strong {
+    font-size: 18px;
+  }
+
+  small {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  li {
+    padding: 10px;
+  }
+
+  strong {
+    font-size: 16px;
+  }
+
+  small {
+    font-size: 12px;
+  }
+}
+.scrollable-content {
+  max-height: 400px; /* 스크롤 영역의 최대 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  padding: 15px;
+  background-color: #ffffff; /* 배경색 설정 */
+  border: 1px solid #ddd; /* 테두리 추가 */
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.scrollable-content ul {
+  list-style-type: none; /* 리스트 스타일 제거 */
+  padding-left: 0;
+}
+
+.scrollable-content li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border-left: 4px solid #4CAF50;
+  border-radius: 8px;
+}
+
+.scrollable-content li:hover {
+  background-color: #e9ecef;
+}
+
+.scrollable-content strong {
+  font-size: 18px;
+  color: #333;
+}
+
+.scrollable-content small {
+  font-size: 14px;
+  color: #888;
+}

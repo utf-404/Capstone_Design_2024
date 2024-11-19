@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Fall Detection System</title>
+
+    <!-- 외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_index.css') }}">
+    
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+      
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBAnvwSJFRsyP_8Mr_qfvFnTDjPMBhS9nw",
+          authDomain: "appproject-739aa.firebaseapp.com",
+          databaseURL: "https://appproject-739aa-default-rtdb.firebaseio.com",
+          projectId: "appproject-739aa",
+          storageBucket: "appproject-739aa.appspot.com",
+          messagingSenderId: "618115661733",
+          appId: "1:618115661733:web:96b335f2355542a1f1724c",
+          measurementId: "G-Q398T352F9"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div id="header-wrapper">
+        <div id="logo">
+            <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+            {% if userName is not none %}
+                <span>반갑습니다! {{ userName }} 관리자님</span>
+            {% endif %}
+        </div>
+        
+        <div class="header-nav">
+            {% block user %}
+            <div class="user-container"> 
+                {% if user == "Login" %}
+                    <button type="button" class="sign-up-button" onclick="location.href='/login'">로그인</button>
+                    <button type="button" class="sign-up-button" onclick="location.href='/signin'">회원가입</button>
+                {% elif user is not none %}
+                    
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                    {% if role == "Admin" %}
+                        <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+                    {% endif %}
+                {% else %}
+                    <p>user: {{ user }}</p>
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                {% endif %}
+            </div>
+            {% endblock user %}
+        </div>
+    </div>
+    <!-- Content Section -->
+    <div class="wrapper1">
+        <div id="welcome" class="container"?->
+            {% block contents %}
+            <div class="title">
+                <h2>Senior Fall Detection 시스템에 오신 것을 환영합니다!</h2>
+                <span class="byline">이 시스템은 요양시설 내에서 노인들의 낙상을 실시간으로 감지하고, 관리자에게 경고를 보내는 기능을 제공합니다.</span></div>
+            <div class="content">
+                {% if user is not none %}
+                    {% if role == "Admin" %}
+                        <p>관리자 전용 기능에 접근할 수 있습니다.</p>
+                        <button type="button" class="a-button" onclick="location.href='/cctv'">CCTV 관리</button>
+                    {% else %}
+                        <p>시스템 사용을 위해 상단 메뉴를 이용해 로그인 또는 회원가입을 해주세요.</p>
+                        <p>로그인 후 시스템을 이용해주세요.</p>
+                        <p>사용자 전용 기능에 접근할 수 있습니다.</p>
+                    {% endif %}
+                {% else %}
+                    <p>시스템 사용을 위해 상단 메뉴를 이용해 로그인 또는 회원가입을 해주세요.</p>
+                    <p>로그인 후 시스템을 이용해주세요.</p>
+                {% endif %}
+            </div>
+            {% endblock contents %}
+        </div>
+    </div>
+    <div class="wrapper2">
+        
+    </div>
+
+</body>
+</html>

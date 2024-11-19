@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>공지사항 목록</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notice_list.css') }}">
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="logo">
+                <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+            </a>
+        </div>
+        <div class="header-nav">
+           
+            <div class="user-container"> 
+                
+                
+                    
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                    
+                        <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+            </div>
+       
+        </div>
+    </div>
+    <div id="container_1">
+        <h1>공지사항 목록</h1>
+        {% block contents %}
+            
+            <!-- 공지사항 작성 버튼 -->
+                
+
+        {% if length == 0 %}
+            <p>작성된 공지사항이 없습니다.</p>
+        {% else %}
+            <div class="scrollable-content">  <!-- 스크롤 가능한 영역 -->
+                <ul>
+                {% for pid, notices in post_list.items() %}
+                    <li>
+                        <a href="{{ url_for('notice_detail', pid=pid) }}">
+                            <div style="margin-bottom: 20px;">
+                                <strong>{{ notices['title'] }}</strong>
+                                <small><a href="{{ url_for('notice_detail', pid=pid) }}"> {{ notices['date'] }}</a></small> 
+                                        
+                                
+                         
+                        </a>
+                     <!-- 공지사항 제목 -->
+                      <!-- 공지사항 작성 날짜 -->
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endblock contents %}
+    </div>
+    
+    
+</body>
+</html>

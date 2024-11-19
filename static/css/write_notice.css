@@ -1,0 +1,111 @@
+/* write_notice.css */
+
+/* 폼 스타일 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.container {
+  
+  background-color: white;
+  padding: 100px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 1500px;
+  margin: 20px auto;
+}
+h2{
+  font-size: 40px;
+}
+label {
+  font-size: 30px;
+  font-style: bold;
+  color: #333;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+body{
+  margin: 0px;
+	padding: 0px;
+}
+#header-wrapper {
+  background-color: #8DCB89;
+  text-align: center;
+}
+.header-nav {
+  overflow: hidden;
+padding: 5em 0em;
+background: #8DCB89;
+}
+.header-nav button {
+  display: inline-block;
+  margin-left: 0.50em;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.30em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #8DCB89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#logo
+{
+	padding: 5em 0em;
+	text-align: center;
+}
+	
+#logo h1
+{
+	font-size: 3.5em;
+}
+	
+#logo a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+	
+#logo span
+{
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 1.50em;
+	color: rgba(255,255,255,0.5);
+}
+.header-nav button:hover {
+  background-color: #45a049;
+}

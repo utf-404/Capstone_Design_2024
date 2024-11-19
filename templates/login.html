@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹을 위한 뷰포트 설정 -->
+    <title>Login</title>
+
+    <!-- 외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "",
+          authDomain: "",
+          databaseURL: "",
+          projectId: "",
+          storageBucket: "",
+          messagingSenderId: "",
+          appId: "",
+          measurementId: ""
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // 로그인 처리
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // 기본 폼 제출 동작 방지
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('pwd').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                    // UID 기반으로 사용자 정보 조회
+                    const uid = user.uid;  // UID 가져오기
+                    const userRef = ref(database, 'users/' + uid);  // UID를 이용해 사용자 조회
+
+                    get(userRef).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            const userData = snapshot.val();
+                            const role = userData.role;
+
+                            if (role === 'Admin') {
+                                alert('관리자 로그인 성공!');
+                                // 서버로 세션 설정을 위한 요청 보내기
+                                fetch('/login_done', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ email: email, pwd: password }),  // 비밀번호 포함
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        window.location.href = '/';  // 성공 시 메인 페이지로 리디렉션
+                                    } else {
+                                        alert('세션 설정에 실패했습니다.');
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error('세션 설정 오류:', error);
+                                    alert('서버 오류가 발생했습니다.');
+                                });
+                            } else {
+                                alert('잘못된 접근입니다. 보호자는 웹에서 접근할 수 없습니다.');
+                                auth.signOut();
+                            }
+                        } else {
+                            alert('사용자 데이터를 찾을 수 없습니다.');
+                        }
+                    }).catch((error) => {
+                        console.error('사용자 데이터를 가져오는 중 오류 발생:', error);
+                        alert('사용자 데이터를 가져오는 중 오류가 발생했습니다.');
+                    });
+                })
+                .catch((error) => {
+                    alert(`로그인 실패: ${error.message}`);
+                });
+        });
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>로그인</h1>
+        <form id="login-form">
+            <p>Email: </p>
+            <input type="email" name="email" id="email" required>
+            <p>Password: </p>
+            <input type="password" name="pwd" id="pwd" required>
+            <button type="submit">로그인</button>
+        </form>
+    </div>
+</body>
+</html>

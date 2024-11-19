@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Details</title>
+
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/senior_details.css') }}">
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="logo">
+                <h1><a href="{{ url_for('index') }}">Senior Fall Detection System</a></h1>
+            </a>
+        </div>
+        <div class="header-nav">
+           
+            <div class="user-container"> 
+                
+                
+                    
+                    <button type="button" class="sign-up-button" onclick="location.href='/logout'">로그아웃</button>
+                    
+                        <button type="button" class="sign-up-button" onclick="location.href='/cctv'">CCTV</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/write'">공지사항 작성</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/add_senior'">시니어 등록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/view_seniors'">시니어 정보</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/notices'">공지사항 목록</button>
+                        <button type="button" class="sign-up-button" onclick="location.href='/inquiries'">문의사항 목록</button>
+            </div>
+       
+        </div>
+    </div>
+    <div class="container">
+        <h1> {{ senior.name }}의 상세정보</h1>
+        <ul>
+            <li>시니어 ID: {{ senior.seniorID }}</li>
+            <li>이름: {{ senior.name }}</li>
+            <li>생년월일: {{ senior.birthDate }}</li>
+            <li>성별: {{ senior.gender }}</li>
+            <li>등록날짜: {{ senior.admissionDate }}</li>
+            <li>특이사항: 
+                <input type="text" id="existingConditions" value="{{ senior.existingConditions }}">
+            </li>
+            <li>요양시설 ID: {{ senior.careFacilityID }}</li>
+            <li>보호자: {{ senior.caregiverID }}</li>
+            <li>호실: {{ senior.roomID }}</li>
+        </ul>
+
+        <!-- 버튼들을 모아서 정렬 -->
+
+        <button id="updateButton" data-senior-id="{{ senior.seniorID }}">특이사항 수정</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";  // update 함수 추가
+
+  
+        const firebaseConfig = {
+          apiKey: "",
+          authDomain: "",
+          databaseURL: "",
+          projectId: "",
+          storageBucket: "",
+          messagingSenderId: "",
+          appId: "",
+          measurementId: ""
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        document.getElementById('updateButton').addEventListener('click', function() {
+            const updatedConditions = document.getElementById('existingConditions').value;
+        
+            // Button에 저장된 data-senior-id 속성에서 seniorID 가져오기
+            const seniorID = this.getAttribute('data-senior-id');
+        
+            // Firebase Realtime Database에서 해당 시니어의 정보를 업데이트
+            const seniorRef = ref(database, 'seniors/' + seniorID);
+        
+            // 업데이트 전에 콘솔에 로그를 출력하여 경로와 값이 맞는지 확인
+            console.log('Updating senior with ID:', seniorID);
+            console.log('Updated conditions:', updatedConditions);
+        
+            update(seniorRef, {
+                existingConditions: updatedConditions
+            })
+            .then(() => {
+                alert('특이사항 수정이 완료되었습니다.');
+            })
+            .catch((error) => {
+                console.error('Error updating conditions:', error);
+                alert('특이사항 수정 실패!');
+            });
+        });
+    </script>
+</body>
+</html>

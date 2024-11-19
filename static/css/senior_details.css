@@ -1,0 +1,173 @@
+/* 전체 스타일 */
+
+.container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+h1 {
+  font-size: 40px;
+  color: #333;
+  margin-bottom: 30px;
+  margin-left: 360px;
+}
+
+/* 리스트 스타일 */
+ul {
+  list-style-type: none;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-left: 430px;
+  font-size: 25px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+li input[type="text"] {
+  width: 15%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+
+/* 공통 버튼 스타일 */
+
+/* 버튼 색상 */
+#updateButton {
+  background-color: #8DCB89;
+  display: inline-block;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.20em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 430px;
+}
+
+#updateButton:hover {
+  background-color: #45a049;
+}
+body{
+  margin: 0px;
+	padding: 0px;
+}
+#header-wrapper {
+  background-color: #8DCB89;
+  text-align: center;
+}
+.header-nav {
+  overflow: hidden;
+padding: 5em 0em;
+background: #8DCB89;
+}
+.header-nav button {
+  display: inline-block;
+  margin-left: 0.50em;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.30em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #8DCB89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#logo
+{
+	padding: 5em 0em;
+	text-align: center;
+}
+	
+#logo h1
+{
+	font-size: 3.5em;
+}
+	
+#logo a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+	
+#logo span
+{
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 1.50em;
+	color: rgba(255,255,255,0.5);
+}
+.header-nav button:hover {
+  background-color: #45a049;
+}
+
+/* 반응형 스타일 - 중간 화면용 */
+@media (max-width: 768px) {
+  .container {
+      padding: 30px;
+  }
+
+  h1 {
+      font-size: 24px;
+  }
+
+  li {
+      font-size: 16px;
+  }
+
+  .button-group {
+      flex-direction: column;  /* 세로로 버튼들이 배치됨 */
+      gap: 10px;
+  }
+
+  button, a {
+      width: 100%; /* 버튼이 화면 전체를 차지 */
+  }
+}
+
+/* 반응형 스타일 - 모바일용 */
+@media (max-width: 480px) {
+  h1 {
+      font-size: 22px;
+  }
+
+  .container {
+      padding: 20px;
+  }
+
+  li {
+      font-size: 14px;
+  }
+
+  li input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+  }
+
+  button, a {
+      padding: 10px;
+      font-size: 14px;
+  }
+}

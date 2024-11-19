@@ -1,0 +1,132 @@
+/* inquiry_detail.css */
+#inqury_wrapper {
+  
+  background-color: white;
+  padding: 100px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 20px auto;
+} 
+/* 댓글 리스트 스타일 */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-left: 4px solid #4CAF50;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+li:hover {
+  background-color: #e9ecef;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: #888;
+}
+
+/* 댓글 작성 폼 스타일 */
+form {
+  margin-top: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+#inqury_wrapper button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 10%;
+}
+
+.inqury_wrapper button:hover {
+  background-color: #45a049;
+}
+body{
+  margin: 0px;
+	padding: 0px;
+}
+#header-wrapper {
+  background-color: #8DCB89;
+  text-align: center;
+}
+.header-nav {
+  overflow: hidden;
+padding: 5em 0em;
+background: #8DCB89;
+}
+.header-nav button {
+  display: inline-block;
+  margin-left: 0.50em;
+  padding: 1em 1.5em;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+  font-size: 1.30em;
+  font-weight: 600;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #8DCB89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#logo
+{
+	padding: 5em 0em;
+	text-align: center;
+}
+	
+#logo h1
+{
+	font-size: 3.5em;
+}
+	
+#logo a
+{
+	text-decoration: none;
+	color: #FFF;
+}
+	
+#logo span
+{
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 1.50em;
+	color: rgba(255,255,255,0.5);
+}
+.header-nav button:hover {
+  background-color: #45a049;
+}
+h1{
+  font-size: 40px;
+}
+p{
+  font-size: 20px;
+}
+h3{
+  font-size: 25px;
+}
