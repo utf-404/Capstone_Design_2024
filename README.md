@@ -87,3 +87,59 @@
 
 <img width="1276" alt="image 10" src="https://github.com/user-attachments/assets/f646bc3e-ad4f-4cd9-b6b7-e7d29225838c">
 
+
+## 결과물
+
+관리자 웹 페이지 메인 화면
+
+
+<img width="1441" alt="image 11" src="https://github.com/user-attachments/assets/7efaff92-a0b0-48a3-bc56-cb517191bd62">
+
+
+
+관리자 메인 앱 
+
+
+<img width="421" alt="image 12" src="https://github.com/user-attachments/assets/e64ae01c-c25a-46a0-af35-d8ca1f610af7">
+
+
+보호자 메인 앱
+
+
+<img width="402" alt="image 13" src="https://github.com/user-attachments/assets/2b67967f-a941-40c5-af73-4d4c4359d17e">
+
+
+모니터링 시스템 화면 
+
+
+<img width="1362" alt="image 14" src="https://github.com/user-attachments/assets/b91a897e-b309-4dc2-a592-6d9bbdb4dcb6">
+
+
+낙상 감지 시 APP 알림 화면 및 화면 캡쳐
+
+
+<img width="1335" alt="image 15" src="https://github.com/user-attachments/assets/3aa551ed-9a4b-4a58-92a4-d8dae5368b64">
+
+
+## 정확도
+
+
+<img width="1117" alt="image 16" src="https://github.com/user-attachments/assets/f876e0f3-cca7-448b-a42b-75458e9c5529">
+
+
+## 대외활동
+
+
+<img width="1412" alt="image 17" src="https://github.com/user-attachments/assets/044a7a67-15f7-4aea-9c2b-9710e155d891">
+
+
+## 진행 상황
+
+
+<img width="1368" alt="image 18" src="https://github.com/user-attachments/assets/d0e0cda8-b1eb-44a3-b6fd-e62ced266ff5">
+
+
+## 기대 효과
+
+
+<img width="1064" alt="image 19" src="https://github.com/user-attachments/assets/adc88969-c217-45b3-bb89-64b2622f7c2e">
