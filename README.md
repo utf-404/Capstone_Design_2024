@@ -37,41 +37,53 @@
 
 ---
 
+
 ## **낙상 감지 모니터링 시스템 구상도**
 
 <img width="1094" alt="image 2" src="https://github.com/user-attachments/assets/1d10d0c8-7874-4238-b501-684b543c711f">
 
+
 ## 낙상 발생 시 알림 과정
+
 
 <img width="1291" alt="image 3" src="https://github.com/user-attachments/assets/2d9dc0b6-442b-4a0a-9b10-3d271e7188bc">
 
 
 ## 낙상 감지 알고리즘 과정
 
+
 <img width="1287" alt="image 4" src="https://github.com/user-attachments/assets/d00f257f-ddd3-4b9f-8418-282985f2aabb">
+
 
 ## 키 포인트 좌표 추출
 
+
 <img width="1264" alt="image 5" src="https://github.com/user-attachments/assets/d93f0f4b-8204-454b-ae98-1b93ad044add">
+
 
 <img width="1320" alt="image 6" src="https://github.com/user-attachments/assets/c90f9f9a-a551-4a89-9072-68c3a2d7f579">
 
 
 ## 상태정의
 
+
 <img width="1251" alt="image 7" src="https://github.com/user-attachments/assets/198d50b6-033e-4fbc-96b6-7520d61d6ac4">
 
 
 ## 임계값 비교
+
 
 <img width="1331" alt="image 8" src="https://github.com/user-attachments/assets/5112279d-4560-4452-bf23-c826069d288f">
 
 
 ## 낙상탐지
 
+
 <img width="1270" alt="image 9" src="https://github.com/user-attachments/assets/5aa1cecd-5808-405a-aa7c-9ee1672ae177">
 
+
 ## RTSP 및 OpenCV를 활용한 통합 알림 시스템
+
 
 <img width="1276" alt="image 10" src="https://github.com/user-attachments/assets/f646bc3e-ad4f-4cd9-b6b7-e7d29225838c">
 
